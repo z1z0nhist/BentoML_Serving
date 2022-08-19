@@ -5,7 +5,7 @@ This task based on Drug Imgae classification.
 
 # 1. Init WrapperModel then save model as bentoml model
 
-```
+```python
 import torch
 from models.common import DetectMultiBackend
 from utils.torch_utils import select_device, time_sync
@@ -89,7 +89,7 @@ model = WrapperModel(original_model)
 
 # 2. Write service.py
 
-```
+```python
 import bentoml
 from bentoml.io import Text
 
@@ -109,13 +109,13 @@ async def predict(img: str) -> str:
 
 # 3. Run service
 
-```
+```bash
 bentoml serve service.py:svc
 ```
 
 # 4. Send API
 
-```
+```bash
 curl -X POST -H "Content-Type: text/plain" --data 'SAMPLE IMG URI' http://localhost:3000/predict
 ```
 
@@ -125,7 +125,7 @@ return 'image 1/1 /home/halo/PycharmProjects/bentoml/202106180043369591_0.jpg: 3
 
 ### Write bentomlfile.yaml
 
-```
+```yaml
 service: "service:svc"  # where the bentoml.Service instance is defined
 include:
 - "*.py"
@@ -136,13 +136,13 @@ docker:
 
 ### Build
 
-```
+```bash
 bentoml build
 ```
 
 ### Deploying the Bento
 
-```
+```bash
 bentoml containerize pytorch_yolo_demo:uk3q6lq7rsmkw3lr
 
 # Successfully built docker image "pytorch_yolo_demo:uk3q6lq7rsmkw3lr"
@@ -152,7 +152,7 @@ docker run --gpus all -p 3000:3000 pytorch_yolo_demo:uk3q6lq7rsmkw3lr
 
 # Options
 
-```
+```bash
 # Production
 bentoml serve --production --host 0.0.0.0 service.py:svc
 ```
