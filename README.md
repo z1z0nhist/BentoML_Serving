@@ -121,6 +121,35 @@ curl -X POST -H "Content-Type: text/plain" --data 'SAMPLE IMG URI' http://localh
 
 return 'image 1/1 /home/halo/PycharmProjects/bentoml/202106180043369591_0.jpg: 352x448 1 F_Duro_50mcg,'
 
+# 5. Docker build
+
+### Write bentomlfile.yaml
+
+```
+service: "service:svc"  # where the bentoml.Service instance is defined
+include:
+- "*.py"
+- "*.pt"
+docker:
+    base_image: "my_custom_image:latest"
+```
+
+### Build
+
+```
+bentoml build
+```
+
+### Deploying the Bento
+
+```
+bentoml containerize pytorch_yolo_demo:uk3q6lq7rsmkw3lr
+
+# Successfully built docker image "pytorch_yolo_demo:uk3q6lq7rsmkw3lr"
+
+docker run --gpus all -p 3000:3000 pytorch_yolo_demo:uk3q6lq7rsmkw3lr
+```
+
 # Options
 
 ```
