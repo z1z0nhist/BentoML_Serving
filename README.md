@@ -1,5 +1,6 @@
 # BentoML_Serving
 BentoML Serving with yolov5(torch)
+This task based on Drug Imgae classification.
 
 # 1. init WrapperModel then save model as bentoml model
 
