@@ -3,7 +3,7 @@ BentoML Serving with yolov5(torch)
 
 This task based on Drug Imgae classification.
 
-# 1. init WrapperModel then save model as bentoml model
+# 1. Init WrapperModel then save model as bentoml model
 
 ```
 import torch
@@ -87,7 +87,7 @@ class WrapperModel(torch.nn.Module):
 model = WrapperModel(original_model)
 ```
 
-# 2. write service.py
+# 2. Write service.py
 
 ```
 import bentoml
